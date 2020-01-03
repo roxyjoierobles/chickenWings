@@ -15,8 +15,6 @@ URL = "https://api.yelp.com/v3/businesses/search"
 # TODO:
 # missing restaurants such as flying beaver --> category: pubs, american (traditional)
 # OR TRY WINGS NIGHT: https://www.yelp.com/search?find_desc=wings+night&find_loc=Vancouver%2C+BC
-# OR WINGS: https://www.yelp.com/search?find_desc=wings&find_loc=Vancouver%2C%20BC
-# need to get more than 20 results --> max number of returns, need to use offset
 
 # WINGS_PARAMS = {"locale": "en_CA","location":"Vancouver", "term":"wings","categories":"chicken_wings", "limit": "50", "sort_by":"rating"}
 WINGS_PARAMS = {"locale": "en_CA","location":"Vancouver", "term":"wings", "limit": "50", "sort_by":"rating"}
@@ -63,7 +61,9 @@ def main():
 main()
 
 
-# data taken from 58 of 64 results from: https://www.yelp.com/search?find_desc=food&find_loc=Vancouver%2C%20BC&cflt=chicken_wings&sortby=recommended
+# expanded search - TO NOTE: restaurants w/ no reviews are not included in count
+# NOW USE: https://www.yelp.com/search?find_desc=wings&find_loc=Vancouver%2C%20BC
+# before used https://www.yelp.com/search?find_desc=food&find_loc=Vancouver%2C%20BC&cflt=chicken_wings&sortby=recommended which limited results
 # only 58 because some of the results do not have any reviews -> 64 - 6 = 58!! THESE PLACES HAS NO REVIEWS SO NOT INCLUDED
 # 27. https://www.yelp.com/biz/texas-barbecue-chicken-and-ribs-burnaby?osq=food
 # 34. https://www.yelp.com/biz/panago-pizza-vancouver-17?osq=food -- no reviews!
