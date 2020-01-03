@@ -17,9 +17,9 @@ URL = "https://api.yelp.com/v3/businesses/search"
 # OR TRY WINGS NIGHT: https://www.yelp.com/search?find_desc=wings+night&find_loc=Vancouver%2C+BC
 # OR WINGS: https://www.yelp.com/search?find_desc=wings&find_loc=Vancouver%2C%20BC
 # need to get more than 20 results --> max number of returns, need to use offset
-# PARAMS = {"locale": "en_CA", "term":"food", "location":"Vancouver", "categories":"newcanadian", "sort_by":"rating"}
 
-WINGS_PARAMS = {"locale": "en_CA","location":"Vancouver", "categories":"chicken_wings", "limit": "50", "sort_by":"rating"}
+# WINGS_PARAMS = {"locale": "en_CA","location":"Vancouver", "term":"wings","categories":"chicken_wings", "limit": "50", "sort_by":"rating"}
+WINGS_PARAMS = {"locale": "en_CA","location":"Vancouver", "term":"wings", "limit": "50", "sort_by":"rating"}
 # params above give business near Vancouver, including Richmond & Burnaby
 # if business does not have any reviews, it will not be included
 
@@ -31,14 +31,17 @@ def get_results(wings_params):
     # proceeds only if status code = 200
     print("The status code is {}".format(request.status_code))
     parsed = json.loads(request.text)
-    total_results = parsed["total"]
-    print("Total restaurants found: ", total_results)
-    restaurants = parsed["businesses"]
+    # print(parsed)
+    restaurants = parsed['businesses']
     for rest in restaurants:
         WINGS.append(rest)
     print(json.dumps(parsed, indent=4))
     print("Restaurants printed: ", len(WINGS))
-    return total_results
+    if len(WINGS) == 50:
+        total_results = parsed["total"]
+        print("Total restaurants found: ", total_results)
+        return total_results
+    return
 
 
 def main():
@@ -48,7 +51,7 @@ def main():
     remaining_results = total_results - 50
     print("remaining ", remaining_results)
     i = 0
-    while remaining_results > 0:
+    while remaining_results >= 0:
         offset = 51 + i*50
         print("iteration ", i)
         i += 1
@@ -57,7 +60,6 @@ def main():
         get_results(WINGS_PARAMS)
         remaining_results -= 50
     # print("Array of businesses: ", WINGS)
-
 main()
 
 
