@@ -13,7 +13,7 @@ HEADERS = {"Authorization": "Bearer %s" % API_KEY}
 URL = "https://api.yelp.com/v3/businesses/search"
 
 # TODO:
-# missing restaurants such as cactus, and joey, etc.
+# missing restaurants such as flying beaver --> category: pubs, american (traditional)
 # need to get more than 20 results --> max number of returns, need to use offset
 # PARAMS = {"locale": "en_CA", "term":"food", "location":"Vancouver", "categories":"newcanadian", "sort_by":"rating"}
 
