@@ -14,6 +14,8 @@ URL = "https://api.yelp.com/v3/businesses/search"
 
 # TODO:
 # missing restaurants such as flying beaver --> category: pubs, american (traditional)
+# OR TRY WINGS NIGHT: https://www.yelp.com/search?find_desc=wings+night&find_loc=Vancouver%2C+BC
+# OR WINGS: https://www.yelp.com/search?find_desc=wings&find_loc=Vancouver%2C%20BC
 # need to get more than 20 results --> max number of returns, need to use offset
 # PARAMS = {"locale": "en_CA", "term":"food", "location":"Vancouver", "categories":"newcanadian", "sort_by":"rating"}
 
