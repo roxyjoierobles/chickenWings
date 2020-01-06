@@ -21,7 +21,7 @@ WINGS_PARAMS = {"locale": "en_CA","location":"Vancouver", "term":"wings", "limit
 # params above give business near Vancouver, including Richmond & Burnaby
 # if business does not have any reviews, it will not be included
 
-WINGS = []
+RESTAURANTS = []
 
 def get_results(wings_params):
     # make request
@@ -32,10 +32,22 @@ def get_results(wings_params):
     # print(parsed)
     restaurants = parsed['businesses']
     for rest in restaurants:
-        WINGS.append(rest)
-    print(json.dumps(parsed, indent=4))
-    print("Restaurants printed: ", len(WINGS))
-    if len(WINGS) == 50:
+        restInfo = []
+        # all necessary restaurant info
+        restInfo.append(rest["id"])
+        restInfo.append(rest["name"])
+        restInfo.append(rest["image_url"])
+        restInfo.append(rest["is_closed"])
+        restInfo.append(rest["url"])
+        restInfo.append(rest["rating"])
+        restInfo.append(rest["location"]["city"])
+        restInfo.append(" ".join(rest["location"]["display_address"]))
+        restInfo.append(rest["phone"])
+        print("Restaurant Info: ", restInfo)
+        RESTAURANTS.append(restInfo)
+    # print(json.dumps(parsed, indent=4))
+    print("Restaurants printed: ", len(RESTAURANTS))
+    if len(RESTAURANTS) == 50:
         total_results = parsed["total"]
         print("Total restaurants found: ", total_results)
         return total_results
@@ -57,7 +69,7 @@ def main():
         WINGS_PARAMS.update(wings_offset)
         get_results(WINGS_PARAMS)
         remaining_results -= 50
-    # print("Array of businesses: ", WINGS)
+    print("Array of businesses: ", RESTAURANTS)
 main()
 
 
