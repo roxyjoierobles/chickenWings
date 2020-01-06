@@ -69,7 +69,9 @@ def main():
         WINGS_PARAMS.update(wings_offset)
         get_results(WINGS_PARAMS)
         remaining_results -= 50
-    print("Array of businesses: ", RESTAURANTS)
+
+    for restaurant in RESTAURANTS:
+        print("Restaurant: ", restaurant)
 main()
 
 
